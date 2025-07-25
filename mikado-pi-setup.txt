@@ -1,0 +1,272 @@
+tupacmanko@himeryu:~$ ssh tupacmanko@192.168.0.104
+The authenticity of host '192.168.0.104 (192.168.0.104)' can't be established.
+ED25519 key fingerprint is SHA256:BZMI4Nop+95NBLSltZvkFKLlhdMBWZ0Cffowb++QMB0.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.0.104' (ED25519) to the list of known hosts.
+Linux zero-mikado 6.1.21-v7+ #1642 SMP Mon Apr  3 17:20:52 BST 2023 armv7l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue May  6 07:36:41 2025
+tupacmanko@zero-mikado:~ $ mkdir -p ~/mei-client/html ~/mei-client/output
+cd ~/mei-client
+nano fetch-and-render.sh
+tupacmanko@zero-mikado:~/mei-client $ ls
+fetch-and-render.sh  html  output
+tupacmanko@zero-mikado:~/mei-client $ nano py_render.py
+tupacmanko@zero-mikado:~/mei-client $ python py_render.py https://google.com
+🧠 Sending render request: https://google.com
+Traceback (most recent call last):
+  File "/home/tupacmanko/mei-client/py_render.py", line 18, in <module>
+    render_url(url)
+  File "/home/tupacmanko/mei-client/py_render.py", line 7, in render_url
+    subprocess.run(["./fetch-and-render.sh", url], check=True)
+  File "/usr/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.9/subprocess.py", line 1823, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+PermissionError: [Errno 13] Permission denied: './fetch-and-render.sh'
+tupacmanko@zero-mikado:~/mei-client $ sudo python py_render.py https://google.com
+🧠 Sending render request: https://google.com
+Traceback (most recent call last):
+  File "/home/tupacmanko/mei-client/py_render.py", line 18, in <module>
+    render_url(url)
+  File "/home/tupacmanko/mei-client/py_render.py", line 7, in render_url
+    subprocess.run(["./fetch-and-render.sh", url], check=True)
+  File "/usr/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.9/subprocess.py", line 1823, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+PermissionError: [Errno 13] Permission denied: './fetch-and-render.sh'
+tupacmanko@zero-mikado:~/mei-client $ chmod +x fetch-and-render.sh
+tupacmanko@zero-mikado:~/mei-client $ sudo python py_render.py https://google.com
+🧠 Sending render request: https://google.com
+🔍 URL que se va a descargar: https://google.com
+🌐 Haciendo request a https://google.com desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+The authenticity of host '192.168.0.100 (192.168.0.100)' can't be established.
+ECDSA key fingerprint is SHA256:idvtfwvnU5BthLeCU+krkWwn1shwD7reFy+UpqVgELA.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.0.100' (ECDSA) to the list of known hosts.
+tupacmanko@192.168.0.100's password: 
+🔍 Verificando que input.html se encuentra en Himeryu...
+tupacmanko@192.168.0.100's password: Traceback (most recent call last):
+  File "/home/tupacmanko/mei-client/py_render.py", line 18, in <module>
+    render_url(url)
+  File "/home/tupacmanko/mei-client/py_render.py", line 7, in render_url
+    subprocess.run(["./fetch-and-render.sh", url], check=True)
+  File "/usr/lib/python3.9/subprocess.py", line 507, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.9/subprocess.py", line 1126, in communicate
+    self.wait()
+  File "/usr/lib/python3.9/subprocess.py", line 1189, in wait
+    return self._wait(timeout=timeout)
+  File "/usr/lib/python3.9/subprocess.py", line 1919, in _wait
+    (pid, sts) = self._try_wait(0)
+  File "/usr/lib/python3.9/subprocess.py", line 1877, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+KeyboardInterrupt
+
+tupacmanko@zero-mikado:~/mei-client $ 
+Connection closed by 192.168.0.100 port 22
+[200~ssh-keygen -t ed25519 -C "raspi-bot"  # Press Enter for all prompts, no passphrase needed
+-bash: [200~ssh-keygen: command not found
+tupacmanko@zero-mikado:~/mei-client $ ~ssh-keygen -t ed25519 -C "raspi-bot"                                                     
+-bash: ~ssh-keygen: command not found
+tupacmanko@zero-mikado:~/mei-client $ ssh-keygen -t ed25519 -C "raspi-bot"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/tupacmanko/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/tupacmanko/.ssh/id_ed25519
+Your public key has been saved in /home/tupacmanko/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:Jmw4c6R31vfe1qDUsi/I raspi-bot
+The key's randomart image is:
++--[ED25519 256]--+
+|   =B*++  .      |
+|  .o+=B .. .     |
+
+
+
+
+
+|     oE          |
++----[SHA256]-----+
+tupacmanko@zero-mikado:~/mei-client $ sudo nano /home/tupacmanko/.ssh/id_ed25519
+tupacmanko@zero-mikado:~/mei-client $ ^C
+tupacmanko@zero-mikado:~/mei-client $ sudo nano /home/tupacmanko/.ssh/id_ed25519.pub
+tupacmanko@zero-mikado:~/mei-client $ ssh-copy-id tupacmanko@192.168.0.100
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/tupacmanko/.ssh/id_ed25519.pub"
+The authenticity of host '192.168.0.100 (192.168.0.100)' can't be established.
+ECDSA key fingerprint is SHA256:idvtfwvnU5BthLeCU+krkWwn1shwD7reFy+UpqVgELA.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+tupacmanko@192.168.0.100's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'tupacmanko@192.168.0.100'"
+and check to make sure that only the key(s) you wanted were added.
+
+tupacmanko@zero-mikado:~/mei-client $ sudo python py_render.py https://google.com
+🧠 Sending render request: https://google.com
+🔍 URL que se va a descargar: https://google.com
+🌐 Haciendo request a https://google.com desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+tupacmanko@192.168.0.100's password: 
+input.html                                                                                                           100%   17KB 812.8KB/s   00:00    
+🔍 Verificando que input.html se encuentra en Himeryu...
+tupacmanko@192.168.0.100's password: 
+-rw-r--r-- 1 tupacmanko tupacmanko 18K Jul 24 00:32 /home/tupacmanko/puppeteer-ram-bot/input/input.html
+🧠 Ejecutando render desde Himeryu (RAM only)...
+tupacmanko@192.168.0.100's password: 
+Traceback (most recent call last):
+  File "/home/tupacmanko/mei-client/py_render.py", line 18, in <module>
+    render_url(url)
+  File "/home/tupacmanko/mei-client/py_render.py", line 7, in render_url
+    subprocess.run(["./fetch-and-render.sh", url], check=True)
+  File "/usr/lib/python3.9/subprocess.py", line 507, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/usr/lib/python3.9/subprocess.py", line 1126, in communicate
+    self.wait()
+  File "/usr/lib/python3.9/subprocess.py", line 1189, in wait
+    return self._wait(timeout=timeout)
+  File "/usr/lib/python3.9/subprocess.py", line 1919, in _wait
+    (pid, sts) = self._try_wait(0)
+  File "/usr/lib/python3.9/subprocess.py", line 1877, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+KeyboardInterrupt
+
+tupacmanko@zero-mikado:~/mei-client $ python py_render.py https://google.com
+🧠 Sending render request: https://google.com
+🔍 URL que se va a descargar: https://google.com
+🌐 Haciendo request a https://google.com desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+input.html                                                                                                           100%   17KB   1.2MB/s   00:00    
+🔍 Verificando que input.html se encuentra en Himeryu...
+-rw-r--r-- 1 tupacmanko tupacmanko 18K Jul 24 00:34 /home/tupacmanko/puppeteer-ram-bot/input/input.html
+🧠 Ejecutando render desde Himeryu (RAM only)...
+📖 Preview del input que se montará en el contenedor:
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){var _g={kEI:'ZtOBaOmLCo-nmtkPnqyIwAU',kEXPI:'0,18167,184687,2,2301728,1195682,1118,302126,146402,90133,78813,16105,78218,266578,290044,5230292,11249,141,32768933,4043709,25228681,78016,60252,14113,57127,8037,6758,23879,9139,4599,328,6225,1116,53074,9975,15048,8209,895,6531,30376,28336,54209,353,4099,14781,3118,3,2749,7714,5773,13484,8161,5967,4719,11805,2801,460,2990,35,3420,13484,2819,9288,3706,1977,3604,13674,96,2,4000,2732,622,5808,752,6415,35,2268,648,4222,3,3,4740,61,945,3,1470,1,3873,1738,917,11,928,1759,1219,1,3463,2,1430,2674,80,7,1979,1032,1579,9212,2359,5,3024,2747,2,4,1,320,841,2,975,3285,667,34,2306,7,1761,6123,1446,3,2,2,2,1331,3622,405,894,4,1587,2,1507,2714,690,3197,1004,361,723,2125,214,1208,71,54,537,4,1378,32,104,1279,830,121,841,821,742,1904,174,543,976,1134,2,536,746,65,5,368,139,175,43,85,310,328,1036,5,158,218,68,968,310,436,13,552,857,1183,111,834,1499,1139,90,390,2,9,1,302,377,1132,886,538,2,246,4,418,47,989,2,666,21,124,753,155,396,10,136,451,4,50,796,25,493,493,2,1240,199,35,216,73,1190,573,1772,3,3,378,453,63,508,387,286,1953,19,693,411,40,560,1414,875,228,58,897,61,207,704,53,528,4,4,323,66,3,2,2,2,322,4,445,106,174,154,79,1413,75,164,109,139,238,29,97,116,416,1108,7,346,3,229,293,3,309,575,204,3,48,239,489,168,99,89,22,5,731,249,1181,201,197,465,677,102,1761,2,7,388,214,239,559,21207237,5,2992,4,2701,259,3,1307,6577,607,2,706,1086,151,764,1300,3,1556,189,3,176,63,40,2764,15,538,2,424,96,149,58,142,1,3,316,116,51,186,8490162,179861,395563',kBL:'n9VK',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='es-419';})();(function(){
+var g=this||self;function k(){return window.google&&window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&&window.location.protocol==="https:"&&(google.ml&&google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
+function r(a,b,d,c,h){var e="";b.search("&ei=")===-1&&(e="&ei="+n(c),b.search("&lei=")===-1&&(c=p(c))&&(e+="&lei="+c));var f=b.search("&cshid=")===-1&&a!=="slh";c="&zx="+Date.now().toString();g._cshid&&f&&(c+="&cshid="+g._cshid);(d=d())&&(c+="&opi="+d);return"/"+(h||"gen_204")+"?atyp=i&ct="+String(a)+"&cad="+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r("",a,b)};}).call(this);(function(){google.y={};google.sy={};function e(a,b,c){if(a)var d=a.id;else{do d=Math.random();while(c[d])}c[d]=[a,b]}var f;(f=google).x||(f.x=function(a,b){e(a,b,google.y)});var g;(g=google).sx||(g.sx=function(a,b){e(a,b,google.sy)});google.lm=[];var h;(h=google).plm||(h.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var k;(k=google).load||(k.load=function(a,b,c){google.lq.push([[a],b,c])});var l;(l=google).loadAll||(l.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var m;(m=google).lx||(m.lx=function(){});var n=[],p;(p=google).fce||(p.fce=function(a,b,c,d){n.push([a,b,c,d])});google.qce=n;google.adl=[];}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#1f1f1f}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#1f1f1f;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){window.google.erd={jsr:1,bv:2260,de:true,dpf:'MKktT-2trvm-84wFnm4z6kFHPiCAW5Qn8df04IcX8-U'};
+🚀 Lanzando render
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.png': Operation not permitted
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.html': Operation not permitted
+📥 Descargando render result (screenshot + HTML)...
+render.png                                                                                                           100%   28KB   1.8MB/s   00:00    
+render.html                                                                                                          100%   18KB   2.2MB/s   00:00    
+✅ Proceso completado. Resultados:
+🖼️  Imagen: output/render-20250724-003447.png
+📝 HTML:   output/render-20250724-003447.html
+tupacmanko@zero-mikado:~/mei-client $ python py_render.py https://www.farfetch.com/mx/shopping/men/t-shirts-vests-2/items.aspx
+🧠 Sending render request: https://www.farfetch.com/mx/shopping/men/t-shirts-vests-2/items.aspx
+🔍 URL que se va a descargar: https://www.farfetch.com/mx/shopping/men/t-shirts-vests-2/items.aspx
+🌐 Haciendo request a https://www.farfetch.com/mx/shopping/men/t-shirts-vests-2/items.aspx desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+input.html                                                                                                           100%   17KB   1.5MB/s   00:00    
+🔍 Verificando que input.html se encuentra en Himeryu...
+-rw-r--r-- 1 tupacmanko tupacmanko 18K Jul 24 00:37 /home/tupacmanko/puppeteer-ram-bot/input/input.html
+🧠 Ejecutando render desde Himeryu (RAM only)...
+📖 Preview del input que se montará en el contenedor:
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){var _g={kEI:'ZtOBaOmLCo-nmtkPnqyIwAU',kEXPI:'0,18167,184687,2,2301728,1195682,1118,302126,146402,90133,78813,16105,78218,266578,290044,5230292,11249,141,32768933,4043709,25228681,78016,60252,14113,57127,8037,6758,23879,9139,4599,328,6225,1116,53074,9975,15048,8209,895,6531,30376,28336,54209,353,4099,14781,3118,3,2749,7714,5773,13484,8161,5967,4719,11805,2801,460,2990,35,3420,13484,2819,9288,3706,1977,3604,13674,96,2,4000,2732,622,5808,752,6415,35,2268,648,4222,3,3,4740,61,945,3,1470,1,3873,1738,917,11,928,1759,1219,1,3463,2,1430,2674,80,7,1979,1032,1579,9212,2359,5,3024,2747,2,4,1,320,841,2,975,3285,667,34,2306,7,1761,6123,1446,3,2,2,2,1331,3622,405,894,4,1587,2,1507,2714,690,3197,1004,361,723,2125,214,1208,71,54,537,4,1378,32,104,1279,830,121,841,821,742,1904,174,543,976,1134,2,536,746,65,5,368,139,175,43,85,310,328,1036,5,158,218,68,968,310,436,13,552,857,1183,111,834,1499,1139,90,390,2,9,1,302,377,1132,886,538,2,246,4,418,47,989,2,666,21,124,753,155,396,10,136,451,4,50,796,25,493,493,2,1240,199,35,216,73,1190,573,1772,3,3,378,453,63,508,387,286,1953,19,693,411,40,560,1414,875,228,58,897,61,207,704,53,528,4,4,323,66,3,2,2,2,322,4,445,106,174,154,79,1413,75,164,109,139,238,29,97,116,416,1108,7,346,3,229,293,3,309,575,204,3,48,239,489,168,99,89,22,5,731,249,1181,201,197,465,677,102,1761,2,7,388,214,239,559,21207237,5,2992,4,2701,259,3,1307,6577,607,2,706,1086,151,764,1300,3,1556,189,3,176,63,40,2764,15,538,2,424,96,149,58,142,1,3,316,116,51,186,8490162,179861,395563',kBL:'n9VK',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='es-419';})();(function(){
+var g=this||self;function k(){return window.google&&window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&&window.location.protocol==="https:"&&(google.ml&&google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
+function r(a,b,d,c,h){var e="";b.search("&ei=")===-1&&(e="&ei="+n(c),b.search("&lei=")===-1&&(c=p(c))&&(e+="&lei="+c));var f=b.search("&cshid=")===-1&&a!=="slh";c="&zx="+Date.now().toString();g._cshid&&f&&(c+="&cshid="+g._cshid);(d=d())&&(c+="&opi="+d);return"/"+(h||"gen_204")+"?atyp=i&ct="+String(a)+"&cad="+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r("",a,b)};}).call(this);(function(){google.y={};google.sy={};function e(a,b,c){if(a)var d=a.id;else{do d=Math.random();while(c[d])}c[d]=[a,b]}var f;(f=google).x||(f.x=function(a,b){e(a,b,google.y)});var g;(g=google).sx||(g.sx=function(a,b){e(a,b,google.sy)});google.lm=[];var h;(h=google).plm||(h.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var k;(k=google).load||(k.load=function(a,b,c){google.lq.push([[a],b,c])});var l;(l=google).loadAll||(l.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var m;(m=google).lx||(m.lx=function(){});var n=[],p;(p=google).fce||(p.fce=function(a,b,c,d){n.push([a,b,c,d])});google.qce=n;google.adl=[];}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#1f1f1f}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#1f1f1f;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){window.google.erd={jsr:1,bv:2260,de:true,dpf:'MKktT-2trvm-84wFnm4z6kFHPiCAW5Qn8df04IcX8-U'};
+🚀 Lanzando render
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.png': Operation not permitted
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.html': Operation not permitted
+📥 Descargando render result (screenshot + HTML)...
+render.png                                                                                                           100%   28KB   2.3MB/s   00:00    
+render.html                                                                                                          100%   18KB   1.1MB/s   00:00    
+✅ Proceso completado. Resultados:
+🖼️  Imagen: output/render-20250724-003727.png
+📝 HTML:   output/render-20250724-003727.html
+tupacmanko@zero-mikado:~/mei-client $ python py_render.py https://tenmei.tech
+🧠 Sending render request: https://tenmei.tech
+🔍 URL que se va a descargar: https://tenmei.tech
+🌐 Haciendo request a https://tenmei.tech desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+input.html                                                                                                           100%   17KB   1.6MB/s   00:00    
+🔍 Verificando que input.html se encuentra en Himeryu...
+-rw-r--r-- 1 tupacmanko tupacmanko 18K Jul 24 00:38 /home/tupacmanko/puppeteer-ram-bot/input/input.html
+🧠 Ejecutando render desde Himeryu (RAM only)...
+📖 Preview del input que se montará en el contenedor:
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){var _g={kEI:'ZtOBaOmLCo-nmtkPnqyIwAU',kEXPI:'0,18167,184687,2,2301728,1195682,1118,302126,146402,90133,78813,16105,78218,266578,290044,5230292,11249,141,32768933,4043709,25228681,78016,60252,14113,57127,8037,6758,23879,9139,4599,328,6225,1116,53074,9975,15048,8209,895,6531,30376,28336,54209,353,4099,14781,3118,3,2749,7714,5773,13484,8161,5967,4719,11805,2801,460,2990,35,3420,13484,2819,9288,3706,1977,3604,13674,96,2,4000,2732,622,5808,752,6415,35,2268,648,4222,3,3,4740,61,945,3,1470,1,3873,1738,917,11,928,1759,1219,1,3463,2,1430,2674,80,7,1979,1032,1579,9212,2359,5,3024,2747,2,4,1,320,841,2,975,3285,667,34,2306,7,1761,6123,1446,3,2,2,2,1331,3622,405,894,4,1587,2,1507,2714,690,3197,1004,361,723,2125,214,1208,71,54,537,4,1378,32,104,1279,830,121,841,821,742,1904,174,543,976,1134,2,536,746,65,5,368,139,175,43,85,310,328,1036,5,158,218,68,968,310,436,13,552,857,1183,111,834,1499,1139,90,390,2,9,1,302,377,1132,886,538,2,246,4,418,47,989,2,666,21,124,753,155,396,10,136,451,4,50,796,25,493,493,2,1240,199,35,216,73,1190,573,1772,3,3,378,453,63,508,387,286,1953,19,693,411,40,560,1414,875,228,58,897,61,207,704,53,528,4,4,323,66,3,2,2,2,322,4,445,106,174,154,79,1413,75,164,109,139,238,29,97,116,416,1108,7,346,3,229,293,3,309,575,204,3,48,239,489,168,99,89,22,5,731,249,1181,201,197,465,677,102,1761,2,7,388,214,239,559,21207237,5,2992,4,2701,259,3,1307,6577,607,2,706,1086,151,764,1300,3,1556,189,3,176,63,40,2764,15,538,2,424,96,149,58,142,1,3,316,116,51,186,8490162,179861,395563',kBL:'n9VK',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='es-419';})();(function(){
+var g=this||self;function k(){return window.google&&window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&&window.location.protocol==="https:"&&(google.ml&&google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
+function r(a,b,d,c,h){var e="";b.search("&ei=")===-1&&(e="&ei="+n(c),b.search("&lei=")===-1&&(c=p(c))&&(e+="&lei="+c));var f=b.search("&cshid=")===-1&&a!=="slh";c="&zx="+Date.now().toString();g._cshid&&f&&(c+="&cshid="+g._cshid);(d=d())&&(c+="&opi="+d);return"/"+(h||"gen_204")+"?atyp=i&ct="+String(a)+"&cad="+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r("",a,b)};}).call(this);(function(){google.y={};google.sy={};function e(a,b,c){if(a)var d=a.id;else{do d=Math.random();while(c[d])}c[d]=[a,b]}var f;(f=google).x||(f.x=function(a,b){e(a,b,google.y)});var g;(g=google).sx||(g.sx=function(a,b){e(a,b,google.sy)});google.lm=[];var h;(h=google).plm||(h.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var k;(k=google).load||(k.load=function(a,b,c){google.lq.push([[a],b,c])});var l;(l=google).loadAll||(l.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var m;(m=google).lx||(m.lx=function(){});var n=[],p;(p=google).fce||(p.fce=function(a,b,c,d){n.push([a,b,c,d])});google.qce=n;google.adl=[];}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#1f1f1f}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#1f1f1f;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){window.google.erd={jsr:1,bv:2260,de:true,dpf:'MKktT-2trvm-84wFnm4z6kFHPiCAW5Qn8df04IcX8-U'};
+🚀 Lanzando render
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.png': Operation not permitted
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.html': Operation not permitted
+📥 Descargando render result (screenshot + HTML)...
+render.png                                                                                                           100%   28KB   2.0MB/s   00:00    
+render.html                                                                                                          100%   18KB   1.9MB/s   00:00    
+✅ Proceso completado. Resultados:
+🖼️  Imagen: output/render-20250724-003816.png
+📝 HTML:   output/render-20250724-003816.html
+tupacmanko@zero-mikado:~/mei-client $ sudo nano fetch-and-render.sh 
+tupacmanko@zero-mikado:~/mei-client $ ./fetch-and-render.sh https://tenmei.tech
+🔍 URL que se va a descargar: https://tenmei.tech
+🌐 Haciendo request a https://tenmei.tech desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+input.html                                                                                                           100%   17KB   1.1MB/s   00:00    
+🔍 Verificando que input.html se encuentra en Himeryu...
+-rw-r--r-- 1 tupacmanko tupacmanko 18K Jul 24 00:41 /home/tupacmanko/puppeteer-ram-bot/input/input.html
+🧠 Ejecutando render desde Himeryu (RAM only)...
+📖 Preview del input que se montará en el contenedor:
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){var _g={kEI:'ZtOBaOmLCo-nmtkPnqyIwAU',kEXPI:'0,18167,184687,2,2301728,1195682,1118,302126,146402,90133,78813,16105,78218,266578,290044,5230292,11249,141,32768933,4043709,25228681,78016,60252,14113,57127,8037,6758,23879,9139,4599,328,6225,1116,53074,9975,15048,8209,895,6531,30376,28336,54209,353,4099,14781,3118,3,2749,7714,5773,13484,8161,5967,4719,11805,2801,460,2990,35,3420,13484,2819,9288,3706,1977,3604,13674,96,2,4000,2732,622,5808,752,6415,35,2268,648,4222,3,3,4740,61,945,3,1470,1,3873,1738,917,11,928,1759,1219,1,3463,2,1430,2674,80,7,1979,1032,1579,9212,2359,5,3024,2747,2,4,1,320,841,2,975,3285,667,34,2306,7,1761,6123,1446,3,2,2,2,1331,3622,405,894,4,1587,2,1507,2714,690,3197,1004,361,723,2125,214,1208,71,54,537,4,1378,32,104,1279,830,121,841,821,742,1904,174,543,976,1134,2,536,746,65,5,368,139,175,43,85,310,328,1036,5,158,218,68,968,310,436,13,552,857,1183,111,834,1499,1139,90,390,2,9,1,302,377,1132,886,538,2,246,4,418,47,989,2,666,21,124,753,155,396,10,136,451,4,50,796,25,493,493,2,1240,199,35,216,73,1190,573,1772,3,3,378,453,63,508,387,286,1953,19,693,411,40,560,1414,875,228,58,897,61,207,704,53,528,4,4,323,66,3,2,2,2,322,4,445,106,174,154,79,1413,75,164,109,139,238,29,97,116,416,1108,7,346,3,229,293,3,309,575,204,3,48,239,489,168,99,89,22,5,731,249,1181,201,197,465,677,102,1761,2,7,388,214,239,559,21207237,5,2992,4,2701,259,3,1307,6577,607,2,706,1086,151,764,1300,3,1556,189,3,176,63,40,2764,15,538,2,424,96,149,58,142,1,3,316,116,51,186,8490162,179861,395563',kBL:'n9VK',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='es-419';})();(function(){
+var g=this||self;function k(){return window.google&&window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&&window.location.protocol==="https:"&&(google.ml&&google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
+function r(a,b,d,c,h){var e="";b.search("&ei=")===-1&&(e="&ei="+n(c),b.search("&lei=")===-1&&(c=p(c))&&(e+="&lei="+c));var f=b.search("&cshid=")===-1&&a!=="slh";c="&zx="+Date.now().toString();g._cshid&&f&&(c+="&cshid="+g._cshid);(d=d())&&(c+="&opi="+d);return"/"+(h||"gen_204")+"?atyp=i&ct="+String(a)+"&cad="+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r("",a,b)};}).call(this);(function(){google.y={};google.sy={};function e(a,b,c){if(a)var d=a.id;else{do d=Math.random();while(c[d])}c[d]=[a,b]}var f;(f=google).x||(f.x=function(a,b){e(a,b,google.y)});var g;(g=google).sx||(g.sx=function(a,b){e(a,b,google.sy)});google.lm=[];var h;(h=google).plm||(h.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var k;(k=google).load||(k.load=function(a,b,c){google.lq.push([[a],b,c])});var l;(l=google).loadAll||(l.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var m;(m=google).lx||(m.lx=function(){});var n=[],p;(p=google).fce||(p.fce=function(a,b,c,d){n.push([a,b,c,d])});google.qce=n;google.adl=[];}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#1f1f1f}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#1f1f1f;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){window.google.erd={jsr:1,bv:2260,de:true,dpf:'MKktT-2trvm-84wFnm4z6kFHPiCAW5Qn8df04IcX8-U'};
+🚀 Lanzando render
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.png': Operation not permitted
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.html': Operation not permitted
+📥 Descargando render result (screenshot + HTML)...
+render.png                                                                                                           100%   28KB   1.5MB/s   00:00    
+render.html                                                                                                          100%   18KB   2.1MB/s   00:00    
+✅ Proceso completado. Resultados:
+🖼️  Imagen: output/render-20250724-004120.png
+📝 HTML:   output/render-20250724-004120.html
+tupacmanko@zero-mikado:~/mei-client $ ./fetch-and-render.sh https://tenmei.tech
+🔍 URL que se va a descargar: https://tenmei.tech
+🌐 Haciendo request a https://tenmei.tech desde la Raspberry...
+📤 Enviando input.html a Himeryu...
+input.html                                                                                                           100%   17KB   1.5MB/s   00:00    
+🔍 Verificando que input.html se encuentra en Himeryu...
+-rw-r--r-- 1 tupacmanko tupacmanko 18K Jul 24 00:58 /home/tupacmanko/puppeteer-ram-bot/input/input.html
+🧠 Ejecutando render desde Himeryu (RAM only)...
+📖 Preview del input que se montará en el contenedor:
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="es-419"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){var _g={kEI:'ZtOBaOmLCo-nmtkPnqyIwAU',kEXPI:'0,18167,184687,2,2301728,1195682,1118,302126,146402,90133,78813,16105,78218,266578,290044,5230292,11249,141,32768933,4043709,25228681,78016,60252,14113,57127,8037,6758,23879,9139,4599,328,6225,1116,53074,9975,15048,8209,895,6531,30376,28336,54209,353,4099,14781,3118,3,2749,7714,5773,13484,8161,5967,4719,11805,2801,460,2990,35,3420,13484,2819,9288,3706,1977,3604,13674,96,2,4000,2732,622,5808,752,6415,35,2268,648,4222,3,3,4740,61,945,3,1470,1,3873,1738,917,11,928,1759,1219,1,3463,2,1430,2674,80,7,1979,1032,1579,9212,2359,5,3024,2747,2,4,1,320,841,2,975,3285,667,34,2306,7,1761,6123,1446,3,2,2,2,1331,3622,405,894,4,1587,2,1507,2714,690,3197,1004,361,723,2125,214,1208,71,54,537,4,1378,32,104,1279,830,121,841,821,742,1904,174,543,976,1134,2,536,746,65,5,368,139,175,43,85,310,328,1036,5,158,218,68,968,310,436,13,552,857,1183,111,834,1499,1139,90,390,2,9,1,302,377,1132,886,538,2,246,4,418,47,989,2,666,21,124,753,155,396,10,136,451,4,50,796,25,493,493,2,1240,199,35,216,73,1190,573,1772,3,3,378,453,63,508,387,286,1953,19,693,411,40,560,1414,875,228,58,897,61,207,704,53,528,4,4,323,66,3,2,2,2,322,4,445,106,174,154,79,1413,75,164,109,139,238,29,97,116,416,1108,7,346,3,229,293,3,309,575,204,3,48,239,489,168,99,89,22,5,731,249,1181,201,197,465,677,102,1761,2,7,388,214,239,559,21207237,5,2992,4,2701,259,3,1307,6577,607,2,706,1086,151,764,1300,3,1556,189,3,176,63,40,2764,15,538,2,424,96,149,58,142,1,3,316,116,51,186,8490162,179861,395563',kBL:'n9VK',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='es-419';})();(function(){
+var g=this||self;function k(){return window.google&&window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&&window.location.protocol==="https:"&&(google.ml&&google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
+function r(a,b,d,c,h){var e="";b.search("&ei=")===-1&&(e="&ei="+n(c),b.search("&lei=")===-1&&(c=p(c))&&(e+="&lei="+c));var f=b.search("&cshid=")===-1&&a!=="slh";c="&zx="+Date.now().toString();g._cshid&&f&&(c+="&cshid="+g._cshid);(d=d())&&(c+="&opi="+d);return"/"+(h||"gen_204")+"?atyp=i&ct="+String(a)+"&cad="+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r("",a,b)};}).call(this);(function(){google.y={};google.sy={};function e(a,b,c){if(a)var d=a.id;else{do d=Math.random();while(c[d])}c[d]=[a,b]}var f;(f=google).x||(f.x=function(a,b){e(a,b,google.y)});var g;(g=google).sx||(g.sx=function(a,b){e(a,b,google.sy)});google.lm=[];var h;(h=google).plm||(h.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var k;(k=google).load||(k.load=function(a,b,c){google.lq.push([[a],b,c])});var l;(l=google).loadAll||(l.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var m;(m=google).lx||(m.lx=function(){});var n=[],p;(p=google).fce||(p.fce=function(a,b,c,d){n.push([a,b,c,d])});google.qce=n;google.adl=[];}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#1f1f1f}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#1f1f1f;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce="hvAAMCMo5PTGCcvrQOnmdg">(function(){window.google.erd={jsr:1,bv:2260,de:true,dpf:'MKktT-2trvm-84wFnm4z6kFHPiCAW5Qn8df04IcX8-U'};
+🚀 Lanzando render
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.png': Operation not permitted
+chown: changing ownership of '/home/tupacmanko/puppeteer-ram-bot/output/render.html': Operation not permitted
+📥 Descargando render result (screenshot + HTML)...
+render.png                                                                                                           100%   28KB   2.3MB/s   00:00    
+render.html                                                                                                          100%   18KB   2.0MB/s   00:00    
+✅ Proceso completado. Resultados:
+🖼️  Imagen: output/render-20250724-005823.png
+📝 HTML:   output/render-20250724-005823.html
+tupacmanko@zero-mikado:~/mei-client $ client_loop: send disconnect: Broken pipe
+tupacmanko@himeryu:~$ 
+

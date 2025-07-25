@@ -1,0 +1,11 @@
+{
+  "name": "puppeteer-ram-bot",
+  "version": "1.0.0",
+  "main": "render.js",
+  "scripts": {
+    "start": "node render.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.3.8"
+  }
+}

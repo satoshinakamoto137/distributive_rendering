@@ -1,0 +1,5 @@
+tupacmanko@himeryu:~$ sudo docker run -it \
+  -v /home/renderbot/puppeteer-ram-bot/input:/app/input:ro \
+  puppeteer-ram bash
+[sudo] password for tupacmanko: 
+root@f6fdf020d75e:/app# ls -lh /app/input/input.html

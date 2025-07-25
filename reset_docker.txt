@@ -1,0 +1,20 @@
+tupacmanko@himeryu:~/puppeteer-ram-bot$ sudo docker build -t puppeteer-ram .
+[+] Building 1.1s (11/11) FINISHED                               docker:default
+ => [internal] load build definition from Dockerfile                       0.0s
+ => => transferring dockerfile: 471B                                       0.0s
+ => [internal] load metadata for docker.io/library/node:18-slim            0.9s
+ => [internal] load .dockerignore                                          0.0s
+ => => transferring context: 2B                                            0.0s
+ => [internal] load build context                                          0.0s
+ => => transferring context: 1.01kB                                        0.0s
+ => [1/6] FROM docker.io/library/node:18-slim@sha256:f9ab18e354e6855ae56e  0.0s
+ => CACHED [2/6] RUN apt-get update && apt-get install -y     chromium     0.0s
+ => CACHED [3/6] WORKDIR /app                                              0.0s
+ => CACHED [4/6] COPY package.json .                                       0.0s
+ => CACHED [5/6] RUN npm install                                           0.0s
+ => CACHED [6/6] COPY render.js .                                          0.0s
+ => exporting to image                                                     0.0s
+ => => exporting layers                                                    0.0s
+ => => writing image sha256:4386af80095d4ce43258d3b2468dc69533d4a7d84311f  0.0s
+ => => naming to docker.io/library/puppeteer-ram                           0.0s
+tupacmanko@himeryu:~/puppeteer-ram-bot$ sudo docker run --rm \
