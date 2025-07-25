@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tenmei.tech Bot Series #2: Distributed Web Rendering 🚀
 
 > **Distributed, Secure, and Realistic Web Rendering with Docker + Puppeteer**
@@ -107,7 +106,5 @@ Read the illustrated article & architecture breakdown:\
 
 ---
 
-=======
 # distributive_rendering
 sample model directories for tenmei article about distributive rendering architecture mainly for bots
->>>>>>> 41d3e6929d02c9d91d93120697b9a63b672fc009
