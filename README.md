@@ -102,7 +102,7 @@ Built by [Tenmei.tech](https://tenmei.tech) for advanced web automation, researc
 
 Want a full technical deep dive?\
 Read the illustrated article & architecture breakdown:\
-👉 [tenmei.tech/your-article-url](https://tenmei.tech/your-article-url)
+👉 https://tenmei.tech/distributed-web-rendering/
 
 ---
 
